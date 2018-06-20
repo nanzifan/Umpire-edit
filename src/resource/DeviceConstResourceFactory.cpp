@@ -12,31 +12,29 @@
 // For details, see https://github.com/LLNL/Umpire
 // Please also see the LICENSE file for MIT license.
 //////////////////////////////////////////////////////////////////////////////
-#ifndef UMPIRE_MemoryResourceTypes_HPP
-#define UMPIRE_MemoryResourceTypes_HPP
+#include "umpire/resource/DeviceConstResourceFactory.hpp"
+
+#include "umpire/resource/DefaultMemoryResource.hpp"
+#include "umpire/alloc/CudaConstMallocAllocator.hpp"
 
 namespace umpire {
 namespace resource {
 
-struct MemoryResourceTypeHash
+bool
+DeviceConstResourceFactory::isValidMemoryResourceFor(const std::string& name)
 {
-    template <typename T>
-    std::size_t operator()(T t) const
-    {
-        return static_cast<std::size_t>(t);
-    }
-};
+  if (name.compare("DEVICE_CONST") == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-
-enum MemoryResourceType {
-  Host,
-  Device,
-  UnifiedMemory,
-  PinnedMemory,
-  Device_Const
-};
+std::shared_ptr<MemoryResource>
+DeviceConstResourceFactory::create(const std::string& UMPIRE_UNUSED_ARG(name), int id)
+{
+  return std::make_shared<resource::DefaultMemoryResource<alloc::CudaConstMallocAllocator> >(Platform::cuda, "DEVICE_CONST", id);
+}
 
 } // end of namespace resource
 } // end of namespace umpire
-
-#endif
