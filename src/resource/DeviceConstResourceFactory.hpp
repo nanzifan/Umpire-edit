@@ -17,6 +17,10 @@
 
 #include "umpire/resource/MemoryResourceFactory.hpp"
 
+// #include "umpire/resource/DeviceResourceFactory.hpp"
+
+// #include "umpire/resource/ConstantMemoryResource.hpp"
+// #include "umpire/alloc/CudaConstMallocAllocator.hpp"
 namespace umpire {
 namespace resource {
 

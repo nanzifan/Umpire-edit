@@ -27,6 +27,9 @@
 
 #include "umpire/resource/MemoryResourceTypes.hpp"
 
+// constant memory
+// extern __constant__ char device_constant_memory[1024*sizeof(double)]
+
 namespace umpire {
 
 /*!

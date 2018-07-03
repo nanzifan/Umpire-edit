@@ -14,8 +14,8 @@
 //////////////////////////////////////////////////////////////////////////////
 #include "umpire/resource/DeviceConstResourceFactory.hpp"
 
-#include "umpire/resource/DefaultMemoryResource.hpp"
-#include "umpire/alloc/CudaConstMallocAllocator.hpp"
+#include "umpire/resource/ConstantMemoryResource.hpp"
+#include "umpire/alloc/CudaConstMemAllocator.hpp"
 
 namespace umpire {
 namespace resource {
@@ -33,7 +33,8 @@ DeviceConstResourceFactory::isValidMemoryResourceFor(const std::string& name)
 std::shared_ptr<MemoryResource>
 DeviceConstResourceFactory::create(const std::string& UMPIRE_UNUSED_ARG(name), int id)
 {
-  return std::make_shared<resource::DefaultMemoryResource<alloc::CudaConstMallocAllocator> >(Platform::cuda, "DEVICE_CONST", id);
+	// constant memory resource, compiled by cuda compiler. umpire_internal_constant_memory
+  return std::make_shared<resource::ConstMemoryResource<alloc::CudaConstMemAllocator> >(Platform::cuda, "DEVICE_CONST", id);
 }
 
 } // end of namespace resource
