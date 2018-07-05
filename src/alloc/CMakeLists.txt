@@ -22,7 +22,7 @@ set (umpire_alloc_depends umpire_util)
 if (ENABLE_CUDA)
   set (umpire_alloc_headers
     ${umpire_alloc_headers}
-    CudaConstMallocAllocator.hpp
+    CudaConstMemAllocator.hpp
     CudaMallocAllocator.hpp
     CudaMallocManagedAllocator.hpp
     CudaPinnedAllocator.hpp)
