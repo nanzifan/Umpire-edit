@@ -20,6 +20,8 @@
 #include "umpire/util/AllocationRecord.hpp"
 #include "umpire/util/Platform.hpp"
 
+#include <cuda_runtime_api.h>
+
 __constant__ char umpire_internal_device_constant_memory[64*1024]
 
 namespace umpire {
