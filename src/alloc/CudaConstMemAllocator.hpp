@@ -18,7 +18,7 @@
 #include <cuda_runtime_api.h>
 // #include "umpire/resource/ConstantMemoryResource.hpp"
 
-__constant__ char umpire_internal_device_constant_memory[64*1024];
+__constant__ char constant_memory[64*1024];
 
 namespace umpire {
 namespace alloc {
@@ -45,7 +45,7 @@ struct CudaConstMemAllocator {
     }
 
     void* ptr = nullptr;
-    cudaError_t error = cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+    cudaError_t error = cudaGetSymbolAddress((void**)&ptr, constant_memory);
     UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
     if (error != cudaSuccess) {
       UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
