@@ -16,6 +16,7 @@
 #define UMPIRE_CudaConstMemAllocator_HPP
 
 #include <cuda_runtime_api.h>
+#include "umpire/resource/ConstantMemoryResource.hpp"
 
 namespace umpire {
 namespace alloc {
