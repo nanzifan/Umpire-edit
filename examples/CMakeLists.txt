@@ -38,3 +38,9 @@ blt_add_executable(
   SOURCES vector_allocator.cpp
   DEPENDS_ON 
     umpire)
+
+blt_add_executable(
+  NAME strategy_example_const
+  SOURCES strategy_example_const.cpp
+  DEPENDS_ON 
+    umpire)
