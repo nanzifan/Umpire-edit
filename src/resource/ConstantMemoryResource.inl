@@ -38,7 +38,7 @@ ConstantMemoryResource<_allocator>::ConstantMemoryResource(Platform platform, co
 template<typename _allocator>
 void* ConstantMemoryResource<_allocator>::allocate(size_t bytes)
 {
-  void* ptr = m_allocator.allocate(umpire_internal_device_constant_memory);
+  void* ptr = m_allocator.allocate(bytes);
   ResourceManager::getInstance().registerAllocation(ptr, new util::AllocationRecord{ptr, bytes, this->shared_from_this()});
 
   m_current_size += bytes;
