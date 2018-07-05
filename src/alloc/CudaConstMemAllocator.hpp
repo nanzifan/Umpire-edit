@@ -61,6 +61,7 @@ struct CudaConstMemAllocator {
   void deallocate(void* ptr)
   {
     // Noting need to do.
+    return;
   }
 };
 
