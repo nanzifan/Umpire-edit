@@ -43,7 +43,7 @@ struct CudaConstMemAllocator {
     }
 
     void* ptr = nullptr;
-    cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+    cudaError_t error = cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
     UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
     if (error != cudaSuccess) {
       UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
