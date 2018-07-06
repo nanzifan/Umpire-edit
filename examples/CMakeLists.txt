@@ -44,3 +44,9 @@ blt_add_executable(
   SOURCES strategy_example_const.cpp
   DEPENDS_ON 
     umpire)
+
+blt_add_executable(
+  NAME device_const_mem
+  SOURCES device_const_mem.cpp
+  DEPENDS_ON 
+    umpire)
