@@ -13,8 +13,9 @@
 // Please also see the LICENSE file for MIT license.
 //////////////////////////////////////////////////////////////////////////////
 #include "CudaConstMemAllocator.hpp"
+#include "umpire/resource/ConstantMemoryResource.hpp"
+
 #include <cuda_runtime_api.h>
-// #include "umpire/resource/ConstantMemoryResource.hpp"
 
 namespace umpire {
 namespace alloc {
