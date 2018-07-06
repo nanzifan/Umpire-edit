@@ -22,10 +22,13 @@ set (umpire_alloc_depends umpire_util)
 if (ENABLE_CUDA)
   set (umpire_alloc_headers
     ${umpire_alloc_headers}
-    CudaConstMemAllocator.hpp
     CudaMallocAllocator.hpp
     CudaMallocManagedAllocator.hpp
     CudaPinnedAllocator.hpp)
+  add_compile_options(-x cu)
+  set (umpire_alloc_headers
+    ${umpire_alloc_headers}
+    CudaConstMemAllocator.hpp)
 endif ()
 
 blt_add_library(
