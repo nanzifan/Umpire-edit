@@ -68,4 +68,4 @@ namespace alloc {
 } // end of namespace alloc
 } // end of namespace umpire
 
-#endif // UMPIRE_CudaMallocAllocator_HPP
+// #endif // UMPIRE_CudaMallocAllocator_HPP
