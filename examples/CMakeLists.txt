@@ -46,7 +46,13 @@ blt_add_executable(
     umpire)
 
 blt_add_executable(
-  NAME device_const_mem
-  SOURCES device_const_mem.cpp
+  NAME device_const_memalloc
+  SOURCES device_const_memalloc.cpp
+  DEPENDS_ON 
+    umpire)
+
+blt_add_executable(
+  NAME device_const_mem_real_case
+  SOURCES device_const_mem_real_case.cpp
   DEPENDS_ON 
     umpire)
