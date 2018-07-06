@@ -12,13 +12,9 @@
 // For details, see https://github.com/LLNL/Umpire
 // Please also see the LICENSE file for MIT license.
 //////////////////////////////////////////////////////////////////////////////
-#ifndef UMPIRE_CudaConstMemAllocator_HPP
-#define UMPIRE_CudaConstMemAllocator_HPP
-
+#include "CudaConstMemAllocator.hpp"
 #include <cuda_runtime_api.h>
 // #include "umpire/resource/ConstantMemoryResource.hpp"
-
-__constant__ char umpire_internal_device_constant_memory[64*1024];
 
 namespace umpire {
 namespace alloc {
@@ -28,7 +24,7 @@ namespace alloc {
  * \brief Uses cudaMalloc and cudaFree to allocate and deallocate memory on
  *        NVIDIA GPUs.
  */
-struct CudaConstMemAllocator {
+// struct CudaConstMemAllocator {
   /*!
    * \brief Allocate bytes of memory using cudaMalloc
    *
@@ -37,23 +33,23 @@ struct CudaConstMemAllocator {
    *
    * \throws umpire::util::Exception if memory cannot be allocated.
    */
-  void* allocate(size_t size);
-  // {
-  //   // char type, return current available pointer. check size.
-  //   if (size > 64*1024)
-  //   {
-  //      UMPIRE_ERROR("CudaConstMemAllocator required bytes = " << size << " ) larger than MAX constant size: " << 64*1024 << " bytes" );
-  //   }
+  void* CudaConstMemAllocator::allocate(size_t size)
+  {
+    // char type, return current available pointer. check size.
+    if (size > 64*1024)
+    {
+       UMPIRE_ERROR("CudaConstMemAllocator required bytes = " << size << " ) larger than MAX constant size: " << 64*1024 << " bytes" );
+    }
 
-  //   void* ptr = nullptr;
-  //   cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
-  //   UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
-  //   if (error != cudaSuccess) {
-  //     UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
-  //   } else {
-  //     return ptr;
-  //   }
-  // }
+    void* ptr = nullptr;
+    cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+    UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
+    if (error != cudaSuccess) {
+      UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
+    } else {
+      return ptr;
+    }
+  }
 
   /*!
    * \brief Deallocate memory using cudaFree.
@@ -62,12 +58,12 @@ struct CudaConstMemAllocator {
    *
    * \throws umpire::util::Exception if memory cannot be free'd.
    */
-  void deallocate(void* ptr);
-  // {
-  //   // Noting need to do.
-  //   return;
-  // }
-};
+  void CudaConstMemAllocator::deallocate(void* ptr)
+  {
+    // Noting need to do.
+    return;
+  }
+// };
 
 } // end of namespace alloc
 } // end of namespace umpire
