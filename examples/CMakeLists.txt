@@ -53,6 +53,6 @@ blt_add_executable(
 
 blt_add_executable(
   NAME device_const_mem_real_case
-  SOURCES device_const_mem_real_case.cpp
+  SOURCES device_const_mem_real_case.cu
   DEPENDS_ON 
     umpire)
