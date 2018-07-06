@@ -26,6 +26,10 @@ if (ENABLE_CUDA)
     CudaMallocAllocator.hpp
     CudaMallocManagedAllocator.hpp
     CudaPinnedAllocator.hpp)
+
+  set(umpire_alloc_depends
+    ${umpire_alloc_depends}
+    cuda_runtime)
 endif ()
 
 blt_add_library(
