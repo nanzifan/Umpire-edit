@@ -27,7 +27,7 @@ int main(int, char**)
   std::cout << std::endl;
 
   // Device constant memory allocator
-  alloc = rm.getAllocator("DEVICE_CONST");
+  auto alloc = rm.getAllocator("DEVICE_CONST");
 
   // allocating device memory
   void* test = alloc.allocate(100);
