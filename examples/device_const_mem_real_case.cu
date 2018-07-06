@@ -5,6 +5,7 @@
 #include <string>
 
 #include "umpire/ResourceManager.hpp"
+#include <cuda_runtime_api.h>
 
 // #include "umpire/ResourceManager.hpp"
 
@@ -197,13 +198,20 @@ int main(int, char**)
   // }
   // std::cout << std::endl;
 
-  cudaFree(d_a);
-  cudaFree(d_b);
-  cudaFree(d_sum);
-  cudaFree(d_ptr);
-  free(a);
-  free(b);
-  free(sum);
+  // cudaFree(d_a);
+  // cudaFree(d_b);
+  // cudaFree(d_sum);
+  // free(a);
+  // free(b);
+  // free(sum);
+
+  dev_alloc.deallocate(d_a);
+  dev_alloc.deallocate(d_b);
+  dev_alloc.deallocate(d_sum);
+  host_alloc.deallocate(a);
+  host_alloc.deallocate(b);
+  host_alloc.deallocate(sum);
+  dev_const_alloc.deallocate(d_d);
 
   return 0;
 }
