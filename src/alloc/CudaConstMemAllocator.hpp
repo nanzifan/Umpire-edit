@@ -16,13 +16,14 @@
 #define UMPIRE_CudaConstMemAllocator_HPP
 
 #include <cuda_runtime_api.h>
-#include "umpire/resource/ConstantMemoryResource.hpp"
+// #include "umpire/resource/ConstantMemoryResource.hpp"
 
 // __constant__ char umpire_internal_device_constant_memory[64*1024];
 
 namespace umpire {
 namespace alloc {
 
+__constant__ char umpire_internal_device_constant_memory[64*1024];
 /*!
  * \brief Uses cudaMalloc and cudaFree to allocate and deallocate memory on
  *        NVIDIA GPUs.
