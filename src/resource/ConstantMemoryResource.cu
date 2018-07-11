@@ -12,8 +12,8 @@
 // For details, see https://github.com/LLNL/Umpire
 // Please also see the LICENSE file for MIT license.
 //////////////////////////////////////////////////////////////////////////////
-#ifndef UMPIRE_DefaultMemoryResource_INL
-#define UMPIRE_DefaultMemoryResource_INL
+// #ifndef UMPIRE_DefaultMemoryResource_INL
+// #define UMPIRE_DefaultMemoryResource_INL
 
 #include "umpire/resource/ConstantMemoryResource.hpp"
 #include "umpire/ResourceManager.hpp"
@@ -87,4 +87,4 @@ Platform ConstantMemoryResource<_allocator>::getPlatform()
 
 } // end of namespace resource
 } // end of namespace umpire
-#endif // UMPIRE_DefaultMemoryResource_INL
+// #endif // UMPIRE_DefaultMemoryResource_INL
