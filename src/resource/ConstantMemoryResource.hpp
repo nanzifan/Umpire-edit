@@ -59,6 +59,6 @@ class ConstantMemoryResource :
 } // end of namespace resource
 } // end of namespace umpire
 
-#include "umpire/resource/ConstantMemoryResource.inl"
+// #include "umpire/resource/ConstantMemoryResource.inl"
 
 #endif // UMPIRE_DefaultMemoryResource_HPP
