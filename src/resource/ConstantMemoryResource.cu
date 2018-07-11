@@ -38,7 +38,11 @@ ConstantMemoryResource<_allocator>::ConstantMemoryResource(Platform platform, co
 template<typename _allocator>
 void* ConstantMemoryResource<_allocator>::allocate(size_t bytes)
 {
-  void* ptr = m_allocator.allocate(bytes);
+  // void* ptr = m_allocator.allocate(bytes);
+
+  void* ptr = nullptr;
+  cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+
   ResourceManager::getInstance().registerAllocation(ptr, new util::AllocationRecord{ptr, bytes, this->shared_from_this()});
 
   m_current_size += bytes;
@@ -55,7 +59,7 @@ void ConstantMemoryResource<_allocator>::deallocate(void* ptr)
 {
   UMPIRE_LOG(Debug, "(ptr=" << ptr << ")");
 
-  m_allocator.deallocate(ptr);
+  // m_allocator.deallocate(ptr);
   util::AllocationRecord* record = ResourceManager::getInstance().deregisterAllocation(ptr);
   m_current_size -= record->m_size;
   delete record;

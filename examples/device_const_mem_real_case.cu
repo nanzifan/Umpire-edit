@@ -113,9 +113,11 @@ int main(int, char**)
     sum[i] = 1;
   }
 
-  cudaMemcpy(d_a, a, size*sizeof(double), cudaMemcpyHostToDevice);
+  rm.copy(d_a, a, size*sizeof(double));
+  // cudaMemcpy(d_a, a, size*sizeof(double), cudaMemcpyHostToDevice);
   check_error();
 
+  // rm.copy
   cudaMemcpy(d_b, b, size*sizeof(double), cudaMemcpyHostToDevice);
   check_error();
 
