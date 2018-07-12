@@ -26,7 +26,7 @@ namespace umpire {
 namespace resource {
 
 template<typename _allocator>
-ConstantMemoryResource<_allocator>::ConstantMemoryResource(Platform platform, const std::string& name, int id) :
+ConstantMemoryResource::ConstantMemoryResource(Platform platform, const std::string& name, int id) :
   MemoryResource(name, id),
   m_allocator(),
   m_current_size(0l),
@@ -36,7 +36,7 @@ ConstantMemoryResource<_allocator>::ConstantMemoryResource(Platform platform, co
 }
 
 template<typename _allocator>
-void* ConstantMemoryResource<_allocator>::allocate(size_t bytes)
+void* ConstantMemoryResource::allocate(size_t bytes)
 {
   // void* ptr = m_allocator.allocate(bytes);
 
@@ -55,7 +55,7 @@ void* ConstantMemoryResource<_allocator>::allocate(size_t bytes)
 }
 
 template<typename _allocator>
-void ConstantMemoryResource<_allocator>::deallocate(void* ptr)
+void ConstantMemoryResource::deallocate(void* ptr)
 {
   UMPIRE_LOG(Debug, "(ptr=" << ptr << ")");
 
@@ -66,21 +66,21 @@ void ConstantMemoryResource<_allocator>::deallocate(void* ptr)
 }
 
 template<typename _allocator>
-long ConstantMemoryResource<_allocator>::getCurrentSize()
+long ConstantMemoryResource::getCurrentSize()
 {
   UMPIRE_LOG(Debug, "() returning " << m_current_size);
   return m_current_size;
 }
 
 template<typename _allocator>
-long ConstantMemoryResource<_allocator>::getHighWatermark()
+long ConstantMemoryResource::getHighWatermark()
 {
   UMPIRE_LOG(Debug, "() returning " << m_highwatermark);
   return m_highwatermark;
 }
 
 template<typename _allocator>
-Platform ConstantMemoryResource<_allocator>::getPlatform()
+Platform ConstantMemoryResource::getPlatform()
 {
   return m_platform;
 }
