@@ -26,7 +26,7 @@ namespace umpire {
 namespace resource {
 
 template<typename _allocator>
-ConstantMemoryResource::ConstantMemoryResource(Platform platform, const std::string& name, int id) :
+ConstantMemoryResource<_allocator>::ConstantMemoryResource(Platform platform, const std::string& name, int id) :
   MemoryResource(name, id),
   m_allocator(),
   m_current_size(0l),
@@ -36,12 +36,12 @@ ConstantMemoryResource::ConstantMemoryResource(Platform platform, const std::str
 }
 
 template<typename _allocator>
-void* ConstantMemoryResource::allocate(size_t bytes)
+void* ConstantMemoryResource<_allocator>::allocate(size_t bytes)
 {
   // void* ptr = m_allocator.allocate(bytes);
 
   void* ptr = nullptr;
-  cudaError_t error = cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+  cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
 
   ResourceManager::getInstance().registerAllocation(ptr, new util::AllocationRecord{ptr, bytes, this->shared_from_this()});
 
@@ -55,7 +55,7 @@ void* ConstantMemoryResource::allocate(size_t bytes)
 }
 
 template<typename _allocator>
-void ConstantMemoryResource::deallocate(void* ptr)
+void ConstantMemoryResource<_allocator>::deallocate(void* ptr)
 {
   UMPIRE_LOG(Debug, "(ptr=" << ptr << ")");
 
@@ -66,21 +66,21 @@ void ConstantMemoryResource::deallocate(void* ptr)
 }
 
 template<typename _allocator>
-long ConstantMemoryResource::getCurrentSize()
+long ConstantMemoryResource<_allocator>::getCurrentSize()
 {
   UMPIRE_LOG(Debug, "() returning " << m_current_size);
   return m_current_size;
 }
 
 template<typename _allocator>
-long ConstantMemoryResource::getHighWatermark()
+long ConstantMemoryResource<_allocator>::getHighWatermark()
 {
   UMPIRE_LOG(Debug, "() returning " << m_highwatermark);
   return m_highwatermark;
 }
 
 template<typename _allocator>
-Platform ConstantMemoryResource::getPlatform()
+Platform ConstantMemoryResource<_allocator>::getPlatform()
 {
   return m_platform;
 }
