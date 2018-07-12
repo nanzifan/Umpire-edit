@@ -31,7 +31,7 @@ DeviceConstResourceFactory::isValidMemoryResourceFor(const std::string& name)
 }
 
 std::shared_ptr<MemoryResource>
-DeviceConstResourceFactory::create(const std::string& UMPIRE_UNUSED_ARG(name), int id)
+DeviceConstResourceFactory::create(const std::string& name, int id)
 {
 	// constant memory resource, compiled by cuda compiler. umpire_internal_constant_memory
   return std::make_shared<resource::ConstantMemoryResource<alloc::CudaConstMemAllocator> >(Platform::cuda, "DEVICE_CONST", id);
