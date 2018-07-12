@@ -37,23 +37,23 @@ struct CudaConstMemAllocator {
    *
    * \throws umpire::util::Exception if memory cannot be allocated.
    */
-  void* allocate(size_t size);
-  // {
-  //   // char type, return current available pointer. check size.
-  //   if (size > 64*1024)
-  //   {
-  //      UMPIRE_ERROR("CudaConstMemAllocator required bytes = " << size << " ) larger than MAX constant size: " << 64*1024 << " bytes" );
-  //   }
+  void* allocate(size_t size)
+  {
+    // char type, return current available pointer. check size.
+    // if (size > 64*1024)
+    // {
+    //    UMPIRE_ERROR("CudaConstMemAllocator required bytes = " << size << " ) larger than MAX constant size: " << 64*1024 << " bytes" );
+    // }
 
-  //   void* ptr = nullptr;
-  //   cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
-  //   UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
-  //   if (error != cudaSuccess) {
-  //     UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
-  //   } else {
-  //     return ptr;
-  //   }
-  // }
+    void* ptr = nullptr;
+    // cudaError_t error = ::cudaGetSymbolAddress((void**)&ptr, umpire_internal_device_constant_memory);
+    // UMPIRE_LOG(Debug, "(bytes=" << size << ") returning " << ptr);
+    // if (error != cudaSuccess) {
+      // UMPIRE_ERROR("cudaGetSymbolAddress( bytes = " << size << " ) failed with error: " << cudaGetErrorString(error));
+    // } else {
+      return ptr;
+    // }
+  }
 
   /*!
    * \brief Deallocate memory using cudaFree.
@@ -62,11 +62,11 @@ struct CudaConstMemAllocator {
    *
    * \throws umpire::util::Exception if memory cannot be free'd.
    */
-  void deallocate(void* ptr);
-  // {
-  //   // Noting need to do.
-  //   return;
-  // }
+  void deallocate(void* ptr)
+  {
+    // Noting need to do.
+    return;
+  }
 };
 
 } // end of namespace alloc
