@@ -42,8 +42,8 @@ if (ENABLE_CUDA)
 
   set (umpire_resource_sources
     ${umpire_resource_sources}
-    ConstantMemoryResource.cu
     DeviceConstResourceFactory.cpp
+    ConstantMemoryResource.cu
     DeviceResourceFactory.cpp
     PinnedMemoryResourceFactory.cpp
     UnifiedMemoryResourceFactory.cpp)
