@@ -26,10 +26,6 @@ if (ENABLE_CUDA)
     CudaMallocManagedAllocator.hpp
     CudaPinnedAllocator.hpp
     CudaConstMemAllocator.hpp)
-
-#  set (umpire_alloc_sources
-#    ${umpire_alloc_sources}
-#    CudaConstMemAllocator.cu)
 endif ()
 
 blt_add_library(
